@@ -1,0 +1,83 @@
+// Application of Virtual Base Class in Inheritance
+
+#include<conio.h>
+#include<iostream.h>
+
+class person
+{
+   protected:
+
+   char name[10];
+   int code;
+
+   public:
+   void inp_person()
+   {
+      cout<<"\n\t Enter Name: ";
+      cin>>name;
+
+      cout<<"\n\t Enter Code: ";
+      cin>>code;
+   }
+};
+
+class admin : public virtual person
+{
+   protected:
+
+    int exp;
+
+   public:
+    void inp_admin()
+    {
+      cout<<"\n\t Enter Years of Experienc: ";
+      cin>>exp;
+    }
+};
+
+class account : public virtual person
+{
+   protected:
+
+   float pay;
+
+   public:
+   void inp_acc()
+   {
+     cout<<"\n\t Enter your salary: ";
+     cin>>pay;
+   }
+
+};
+
+class master: private admin, private account
+{
+   public:
+
+   void display()
+   {
+     admin :: inp_person();
+     inp_admin();
+     inp_acc();
+
+     cout<<"\n\t1) Name: "<<name;
+     cout<<"\n\t2) Code: "<<code;
+     cout<<"\n\t3) Experience: "<<exp;
+     cout<<"\n\t4) Pay: "<<pay;
+   }
+
+};
+
+void main()
+{
+    master obj;
+
+    clrscr();
+//    obj.inp_person();
+  //  obj.inp_admin();
+  //  obj.inp_acc();
+
+    obj.display();
+
+    getch();
+}

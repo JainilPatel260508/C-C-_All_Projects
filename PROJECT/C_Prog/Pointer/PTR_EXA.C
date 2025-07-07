@@ -1,0 +1,38 @@
+ /*
+		pointer example
+*/
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int x=10,y=20,z=0,*ptrx,*ptry,*ptrz,i;
+	int m[10]={10,20,30,40,50,60,70,80,90,100},*ptr;
+	int sum=0;
+	clrscr();
+	ptrx=&x;
+	ptry=&y;
+	ptrz=&z;
+	*ptrz = *ptrx + *ptry;
+	printf("\n\t x:%d,Addr of x :%u *ptrx : %d ptrx : %u",x,ptrx,*ptrx,&ptrx);
+	printf("\n\t y:%d,Addr of y :%u *ptry : %d ptry : %u",y,ptry,*ptry,&ptry);
+	printf("\n\t z:%d,addr of z :%u *ptrz : %d ptrz : %u",z,ptrz,*ptrz,&ptrz);
+	ptr = &m[0];
+	for(i=0;i<10;i++)
+	{
+	    printf("\n\t %u ->  %d",ptr,*ptr);
+	    sum += *ptr;
+	    ptr++;
+	}
+	printf("\n\t\t Sum : %d",sum);
+getch();
+}
+
+/*
+    int *i;
+
+	*i=5;
+	i=adress;
+
+
+*/

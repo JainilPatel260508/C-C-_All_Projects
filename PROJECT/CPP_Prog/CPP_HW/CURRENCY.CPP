@@ -1,0 +1,67 @@
+/*
+ Rupees to dollar
+ Dollar to Rupees
+*/
+
+#include<iostream.h>
+#include<conio.h>
+
+class currency
+{
+  private:
+
+  float rupees,dollar;
+
+  public:
+
+     float convert_1(float num)
+     {
+	rupees=num;
+
+	dollar=0.012*rupees;
+
+	return(dollar);
+     }
+
+     float convert_2(float num)
+     {
+	dollar=num;
+
+	rupees=82.67*dollar;
+
+	return(rupees);
+     }
+
+};
+
+void main()
+{
+   currency r,d;
+   float curr1,curr2;
+   int n;
+
+   clrscr();
+
+   cout<<"\n\t What conversion do you want";
+   cout<<"\n\n\t 1)Rupees->Dollars";
+   cout<<"\n\t 2)Dollars->Rupees";
+   cout<<"\n\n\t Enter option: ";
+   cin>>n;
+
+    if(n==1)
+   {
+	 cout<<"\n\t Enter Amount: ";
+	 cin>>curr1;
+
+	 cout<<"\n\t Amount in dollar: "<<r.convert_1(curr1);;
+   }
+   else if(n==2)
+   {
+	 cout<<"\n\t Enter Amount: ";
+	 cin>>curr2;
+
+	 cout<<"\n\t Amount in dollar: "<<d.convert_2(curr2);;
+   }
+
+   getch();
+}

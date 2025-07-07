@@ -1,0 +1,105 @@
+/*Insertion sort*/
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+
+class b_search
+{
+  int *arr,size,mid,min,max;
+
+  public:
+
+  b_search(int );
+  void insert();
+  void ins_sort();
+  void display();
+  void search();
+
+};
+
+b_search :: b_search(int n)
+{
+   size=n;
+   arr = new int[size];
+
+   for(int i=0;i<n;i++)
+   arr[i]=0;
+
+   min=0;
+   max=size-1;
+   mid=(min+max)/2;
+
+}
+
+void b_search :: insert()
+{
+	cout<<"\n\tEnter the data : ";
+     for(int i=0;i<size;i++)
+	cin>>arr[i];
+}
+void b_search :: ins_sort()
+{
+	for(int i=0;i<size;i++)
+	{
+	   for(int j=i;arr[j]>arr[j+1] && j>=0;j--)
+	   {
+		arr[j]=arr[j]+arr[j+1];
+		arr[j+1]=arr[j]-arr[j+1];
+		arr[j]=arr[j]-arr[j+1];
+	   }
+	}
+}
+
+void b_search :: display()
+{
+	cout<<"\n\t   ";
+	for(int i=0;i<size;i++)
+	{
+		cout<<arr[i]<<"  ";
+	}
+	cout<<"\n\n\t\tSorted successfully";
+	getch();
+}
+void b_search :: search()
+{
+	int data;
+
+	cout<<"Enter data to search: ";
+	cin>>data;
+
+	while(min<max && arr[mid]!=data)
+	{
+	      if(data<arr[mid])
+		max=mid-1;
+	      else if(data>arr[mid])
+		min=mid+1;
+	      mid=(max+min)/2;
+	}
+
+	if(arr[mid]==data)
+	{
+	  cout<<"\n\tData Successfully Search...";
+	  cout<<"\n\tPos:"<<mid+1;
+	}
+	else
+	  cout<<"\n\tData Unsuccessfully Search...";
+}
+
+void main()
+{
+   int n;
+
+  clrscr();
+  flushall();
+   cout<<"\n\tEnter size of array: ";
+   cin>>n;
+
+   b_search obj(n);
+
+   obj.insert();
+   obj.ins_sort();
+   obj.display();
+   obj.search();
+
+  getch();
+}

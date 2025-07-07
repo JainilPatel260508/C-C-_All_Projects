@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<conio.h>
+
+void dispmat(int *);
+void inp_mat1(int *);
+
+void main()
+{
+       int m[3][3], n[3][3];
+       int i,j,k,l,a,b,*p1,*p2,*p;
+
+ clrscr();
+
+	p1=&m[0][0];
+	p2=&n[0][0];
+
+       inp_mat1(p1);
+
+	printf("-----------------------------");
+
+
+       inp_mat1(p2);
+
+       printf("\n-----------------------------");
+
+       printf("\n\t1st Matrix:\n");
+       dispmat(p1);
+
+       printf("\n-----------------------------");
+
+       printf("\n\t2nd Matrix:\n");
+       dispmat(p2);
+
+	printf("\n\tResultant matrix :\n");
+
+
+	 for(i=0;i<3;i++)
+       {
+	for(j=0;j<3;j++)
+	{
+		*p = *p1 + *p2;
+		printf("%3d",*p);
+		p++;
+		p1++;
+		p2++;
+	}
+	printf("\n");
+       }
+       getch();
+
+}
+void dispmat(int *arr)
+{
+
+	int i,j;
+
+	clrscr();
+	for(i=0;i<3;i++)
+	{
+	 printf("\n");
+	for(j=0;j<3;j++)
+	{
+		printf("%3d",*arr);
+		arr++;
+
+	}
+
+       }
+getch();
+}
+
+void inp_mat1(int *ptr)
+{
+    int i,j;
+
+	printf("\n\tEnter a matrix  :\n");
+      for(i=0;i<9;i++)
+       {
+	scanf("%d",&*ptr);
+	ptr++;
+       }
+
+}

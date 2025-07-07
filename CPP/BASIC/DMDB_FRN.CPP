@@ -1,0 +1,86 @@
+// friend function application
+
+#include<iostream.h>
+#include<conio.h>
+
+class DB;
+class DM
+{
+    float len_meter;
+    public:
+    void input_dm(void)
+    {
+	int meter,centimeter;
+
+	cout<<"\n\n\t\tEnter distance in meter: ";
+	cin>>meter;
+	cout<<"\n\t\tEnter distance in centimeter: ";
+	cin>>centimeter;
+
+	len_meter=meter+(centimeter/100.0);
+    }
+
+    friend DM fn_sum_meter(DM &, DB &);
+    friend DB fn_sum_feet(DM &, DB &);
+    friend void display(DM &, DB &);
+};
+
+class DB
+{
+    float len_feet;
+    public:
+    void input_db(void)
+    {
+	int feet,inch;
+
+	cout<<"\n\n\t\tEnter distance in feet: ";
+	cin>>feet;
+	cout<<"\n\t\tEnter distance in inches: ";
+	cin>>inch;
+	cout<<"\n\t\t============================================";
+	len_feet=feet+(inch/12.0);
+    }
+    friend DM fn_sum_meter(DM &, DB &);
+    friend DB fn_sum_feet(DM &, DB &);
+    friend void display(DM &, DB &);
+};
+
+DM fn_sum_meter(DM &x, DB &y)
+{
+   DM sum_m;
+   sum_m.len_meter=x.len_meter+(0.305*y.len_feet);
+   return(sum_m);
+}
+
+DB fn_sum_feet(DM &x, DB &y)
+{
+   DB sum_ft;
+   sum_ft.len_feet=y.len_feet+(3.281*x.len_meter);
+   return(sum_ft);
+}
+
+void display(DM &x, DB &y)
+{
+    int t;
+    t=x.len_meter;
+    cout<<"\n\n\t\tSum in Metre: "<<t<<" m "<<(x.len_meter-t)*1000<<" cm";
+
+    t=y.len_feet;
+    cout<<"\n\n\t\tSum in Metre: "<<t<<" m "<<(y.len_feet-t)*1000<<" cm";
+}
+
+ void main()
+{
+clrscr();
+	DM obj_1,sum_meter;
+	DB obj_2,sum_feet;
+
+	obj_1.input_dm();
+	obj_2.input_db();
+
+	sum_meter=fn_sum_meter(obj_1,obj_2);
+	sum_feet=fn_sum_feet(obj_1,obj_2);
+
+	display(sum_meter,sum_feet);
+getch();
+}

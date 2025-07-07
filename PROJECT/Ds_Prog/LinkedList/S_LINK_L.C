@@ -1,0 +1,280 @@
+/*
+	simple linked list
+		Create
+		insert 	-> Begin
+			-> Middle ->After which data
+				  ->Specific position
+			-> End
+		 Delete	-> Begin
+			-> Middle ->After which data
+				  ->Specific position
+			-> End
+
+		 Display
+*/
+#include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
+struct node
+{
+	int info;
+	struct node *next;
+};
+//*first,*last,*tmp,*curr;
+	struct node *first,*last,*tmp,*curr;
+void disp();
+void cnode();
+void main()
+{
+//	struct node *first,*last,*tmp,*curr;
+	char ch;
+	void create();
+	void bins();
+	void mdins();
+	void msins();
+	void eins();
+	void bdel();
+	void mddel();
+	void msdel();
+	void edel();
+
+	first=last=tmp=curr=NULL;
+
+	do
+	{
+	  clrscr();
+	  printf("\n\n\t\t Simple linked list");
+	  printf("\n\t\t a. Create linked list.");
+	  printf("\n\t\t b. Begin Insert.");
+	  printf("\n\t\t c. Middle After Which data.");
+	  printf("\n\t\t d. Middle Which position.");
+	  printf("\n\t\t e. End Insert.");
+	  printf("\n\t\t g. Begin Delete.");
+	  printf("\n\t\t h. Delete Which data.");
+	  printf("\n\t\t i. Delete Which position.");
+	  printf("\n\t\t j. End Delete.");
+	  printf("\n\t\t f. Display .");
+	  printf("\n\t\t x. Exit.");
+	  printf("\n\n\t\t Enter your choice.");
+	  fflush(stdin);
+	  ch=getchar();
+	  switch(tolower(ch))
+	  {
+	     case 'a':
+			create(); break;
+	     case 'b':
+			bins(); break;
+	     case 'c':
+			mdins(); break;
+	     case 'd':
+			msins(); break;
+	     case 'e':
+			eins(); break;
+	     case 'g':
+			bdel(); break;
+	     case 'h':
+			mddel(); break;
+	     case 'i':
+			msdel(); break;
+	     case 'j':
+			edel(); break;
+	     case 'f':
+			disp(); break;
+	     case 'x':
+			break;
+	     default :
+			printf("\n\n\t\t Wrong choice. Try again....");
+			break;
+	  }
+	 getch();
+	}while('x'!=ch);
+}
+void create()
+{
+	int n,i=1;
+	printf("\n\n\t\tHow many nodes:");
+	scanf("%d",&n);
+	while(i<=n)
+	{
+	cnode();
+	if (first==NULL)
+	   first=tmp;
+	else
+	   last->next=tmp;
+	last=tmp;
+	i++;
+	}
+}
+void cnode()
+{       int data;
+	tmp=(struct node*) malloc(sizeof(struct node));
+	printf("\n\n\t\tEnter a data:");
+	scanf("%d",&data);
+	tmp->next=NULL;
+	tmp->info=data;
+}
+void bins()
+{
+	cnode();
+
+	tmp->next=first;
+	first=tmp;
+}
+void mdins()
+{
+    int vdata;
+    printf("\n\n\t\tAfter Which data:");
+    scanf("%d",&vdata);
+    curr=first;
+    while(curr->info!=vdata && curr->next!=NULL)
+    {
+       curr=curr->next;
+    }
+    if(curr->next==NULL)
+    {
+       printf("\n\n\t\tData not found.");
+       return ;
+    }
+    cnode();
+    tmp->next=curr->next;
+    curr->next=tmp;
+}
+void msins()
+{
+    int pos,cnt=1;
+    printf("\n\n\t\tWhich Position:");
+    scanf("%d",&pos);
+    curr=first;
+    while(cnt!=pos-1 && curr->next!=NULL)
+    {
+       curr=curr->next;
+       cnt++;
+    }
+    if(curr->next==NULL)
+    {
+       printf("\n\n\t\tPosition not found.");
+       return ;
+    }
+    cnode();
+    tmp->next=curr->next;
+    curr->next=tmp;
+}
+
+void eins()
+{
+	cnode();
+	last->next=tmp;
+	last=tmp;
+}
+//Delete operation
+void bdel()
+{
+       if(first==NULL)
+       {
+	printf("\n\n\t\tSimple Linked list is empty.");
+	return;
+       }
+
+	tmp=first;
+	first=tmp->next;
+	printf("%d is deleted from linked list.",tmp->info);
+	free(tmp);
+	disp();
+}
+
+void mddel()
+{
+       int vdata;
+       if(first==NULL)
+       {
+	printf("\n\n\t\tSimple Linked list is empty.");
+	return;
+       }
+       printf("\n\n\t\tWhich data:");
+       scanf("%d",&vdata);
+       curr=first;
+       while(curr->next->info!=vdata && curr->next!=NULL)
+       {
+	  curr=curr->next;
+       }
+       if(curr->next==NULL)
+       {
+	 printf("Data not found.");
+	 return;
+	}
+       tmp=curr->next;
+       curr->next=tmp->next;
+       printf("%d is deleted from linked list.",tmp->info);
+       free(tmp);
+       disp();
+}
+void msdel()
+{
+       int pos,cnt=1;
+       if(first==NULL)
+       {
+	printf("\n\n\t\tSimple Linked list is empty.");
+	return;
+       }
+       printf("\n\n\t\tWhich Position:");
+       scanf("%d",&pos);
+       curr=first;
+       while(cnt!= pos-1 && curr->next!=NULL)
+       {
+	  curr=curr->next;
+	  cnt++;
+       }
+       if(curr->next==NULL)
+       {
+	 printf("Position not found.");
+	 return;
+	}
+       tmp=curr->next;
+       curr->next=tmp->next;
+       printf("%d is deleted from linked list.",tmp->info);
+       free(tmp);
+       disp();
+
+}
+void edel()
+{
+       if(first==NULL)
+       {
+	printf("\n\n\t\tSimple Linked list is empty.");
+	return;
+       }
+       curr=first;
+       if(first->next==NULL)
+       {
+	tmp=first;
+	first=tmp->next;
+       }
+       else
+       {
+       while(curr->next!=last)
+       {
+	curr=curr->next;
+       }
+       tmp=last;
+       curr->next=NULL;
+       last=curr;
+       }
+       printf("%d is deleted from linked list.",tmp->info);
+       free(tmp);
+       disp();
+}
+void disp()
+{
+       if(first==NULL)
+       {
+	printf("\n\n\t\tSimple Linked list is empty.");
+	return;
+       }
+       printf("\n\n\t\t\t");
+       curr=first;
+       while(curr!=NULL)
+       {
+	   printf(" %d ",curr->info);
+	   curr=curr->next;
+       }
+}

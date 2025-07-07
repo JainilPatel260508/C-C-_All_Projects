@@ -1,0 +1,62 @@
+/*
+	Static member
+*/
+#include<iostream.h>
+#include<conio.h>
+class item
+{
+	static int cnt;
+	int no;
+	public:
+	      void getdata(int n)
+	      {
+		 no=n;
+		 cnt++;
+	      }
+	      void getcount()
+	      {
+		 cout<<"\n\n\t\tCount:"<<cnt;
+		 cout<<"\n\t\t No:"<<no;
+	      }
+	      static void showcount()
+	      {
+		 cout<<"\n\n\t\tCount from static method:"<<cnt;
+		 //cout<<"\n\t\t No:"<<no;
+	      }
+};
+int item :: cnt;
+void main()
+{
+	item i1,i2,i3;
+	clrscr();
+	i1.getcount();
+	i2.getcount();
+	i3.getcount();
+
+	item :: showcount();
+	cout<<"\n\n\t\t Assign the value into object";
+
+	i1.getdata(100);
+
+	item :: showcount();
+	i1.getcount();
+	i2.getcount();
+	i3.getcount();
+
+	i2.getdata(200);
+
+	item :: showcount();
+	i1.getcount();
+	i2.getcount();
+	i3.getcount();
+
+	i3.getdata(300);
+
+	item :: showcount();
+
+	i1.getcount();
+	i2.getcount();
+	i3.getcount();
+
+getch();
+}

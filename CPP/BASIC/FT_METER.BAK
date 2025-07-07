@@ -1,0 +1,8 @@
+/*1)input
+  2) m to feet
+  3) feet to m
+  4) both
+  5)display
+  6)delete data*/
+#include<iostream.h>
+#include<conio.h>

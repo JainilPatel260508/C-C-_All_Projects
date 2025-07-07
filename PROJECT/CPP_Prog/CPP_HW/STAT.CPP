@@ -1,0 +1,87 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+
+class std_dev
+{
+	private:
+
+		float mean,variance,stad_devi;
+		int n[25];
+
+	public:
+	       int m;
+	       void input(void);
+	       float avg(void);
+	       float varce(void);
+	       float stand_deviat(void);
+};
+
+void std_dev :: input(void)
+{
+	int i=0;
+
+	cout<<"\nEnter no. of inputs: ";
+	cin>>m;
+
+	cout<<"\nEnter the no.: \n";
+
+	for(i=0;i<m;i++)
+	{
+	  cout<<i+1<<": ";
+	  cin>>n[i];
+	}
+
+}
+
+float std_dev :: avg(void)
+{
+     int sum=0,i;
+
+     for(i=0;i<m;i++)
+     {
+       sum=sum+n[i];
+
+     }
+
+     mean=float(sum)/m;
+
+     return(mean);
+}
+
+float std_dev :: varce()
+{
+    float sum=0;
+    int i;
+
+	for(i=0;i<m;i++)
+	{
+	   sum+=pow(n[i] - mean,2);
+	}
+
+	variance=sum/m;
+
+	return(variance);
+
+}
+
+float std_dev :: stand_deviat(void)
+{
+
+      stad_devi=sqrt(variance);
+      return(stad_devi);
+}
+
+void main()
+{
+	std_dev obj;
+
+clrscr();
+	obj.input();
+
+       cout<<"\nMean: "<<obj.avg();
+       cout<<"\nVariance: "<<obj.varce();
+       cout<<"\nStandard Deviation: "<<obj.stand_deviat();
+
+getch();
+}

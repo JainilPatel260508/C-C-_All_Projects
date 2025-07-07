@@ -1,0 +1,64 @@
+/*
+	Person class
+	object oriented program (OOPs)
+*/
+#include<iostream.h>
+#include<conio.h>
+/* User define data type class limitation overcome from struct */
+class person
+{
+	private: //by default access type    dont use from outside
+       //	protected:
+	char name[50]; //Property  or attribute
+	int age;
+	int salary;
+	      void getdata() //function or  method
+	      {
+			cout<<"Enter a person name:";
+			cin>>name;
+			cout<<"Enter an age:";
+			cin>>age;
+			cout<<"Enter a salary:";
+			cin>>salary;
+	      }
+	     // void getdata();
+	public:
+	  void display();
+};
+
+void person :: display()
+	      {
+		 getdata();
+		  cout<<"\n\t\t Person name:"<<name<<" person.";
+		  cout<<"\n\t\t Age :"<<age;
+		  cout<<"\n\t\t Salary :"<<salary;
+	      }
+void main()
+{
+	person p1,p2;
+//	p1.age=15;
+	clrscr();
+	cout<<"\n\n\t\t Input";
+ //	p1.getdata();
+ //	p2.getdata();
+	cout<<"\n\n\t\t Output";
+	p1.display();
+	p2.display();
+	getch();
+}
+
+
+
+
+
+
+
+
+/* User define data type limitation  */
+/*
+struct stud
+{
+   int rollno;
+   int m1,m2,m3;
+};
+*/

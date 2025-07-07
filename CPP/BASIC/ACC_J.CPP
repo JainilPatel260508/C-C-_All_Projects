@@ -1,0 +1,99 @@
+#include<iostream.h>
+#include<conio.h>
+
+class account
+{
+  char name[10];
+  int acc_no,acc_type;
+  float balance;
+  static int count;
+
+  public:
+
+  void create_acc();
+  void menu();
+  int is_underflow()
+  {
+      if(count==-1)
+      {
+	cout<<"\n\n\t\tData is Underflow!!!";
+	return 1;
+      }
+      return 0;
+  }
+  void initial()
+  {
+     count=-1;
+  }
+
+};
+
+void account :: menu()
+{
+    int sw;
+
+	cout<<"\t\t\t\t#SBI bank#";
+	cout<<"\n\n1)Create account";
+	cout<<"\n2)Deposit";
+	cout<<"\n3)Withdraw";
+	cout<<"\n4)Search";
+	cout<<"\n5)Display";
+	cout<<"\n6)Delete Account";
+	cout<<"\n7)Exit";
+	cout<<"\n\nEnter your choice: ";
+	cin>>sw;
+
+	switch(sw)
+	{
+	       case 1:
+		     if(is_underflow())
+		     create_acc();
+		     break;
+
+	 }
+	 if(sw!=7)
+	 menu();
+}
+
+
+void account :: create_acc()
+{
+   int n,i;
+   count++;
+
+l1:
+   cout<<"\n\n\tWhich type of account do you want: ";
+   cout<<"\n\n\t1) Saving Account \n\t2)Current Account";
+   cin>>n;
+
+   if(n==1)
+     acc_type=0;
+   else if(n==2)
+     acc_type=1;
+   else
+   {
+       cout<<"\n\n\t\tEnter no. 1 or 2";
+       getch();
+       goto l1;
+   }
+
+   cout<<"\n\n\t\tEnter your name: ";
+   for(i=0;i!='\0'&& i<9,i++)
+   {
+      cin>>name[i];
+   }
+   name[i]='\0'
+   cout<<"\n\n\t\tEnter Account no. : ";
+   cin>>acc_no;
+
+   if(n==1)
+   {
+       balance=10000;
+       cout<<"\n\n\t\t10000 Rs is deposited in your account by default";
+   }
+   else
+   {
+       balance=5000;
+       cout<<"\n\n\t\t5000 Rs is deposited in your account by default";
+   }
+}

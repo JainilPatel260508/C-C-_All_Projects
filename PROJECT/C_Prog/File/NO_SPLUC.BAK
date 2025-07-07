@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	FILE *fp;
+	int upper=0,lower=0,line=0,space=0;
+	char c;
+	clrscr();
+	printf("Enter data:\n");
+	fp=fopen("C:\TURBOC3\BIN\FILE\data.txt","w+");
+	c=getchar();
+	while(c!=EOF)
+	{
+	   putc(c,fp);
+	   c=getchar();
+	}
+
+	fseek(fp,1,0);
+
+	while((c=getc(fp))!=EOF)
+	{
+	printf("%c",c);
+	 if(c==32)
+	 space++;
+
+	 else if(c>=65 && c<=90)
+	 upper++;
+
+	 else if(c>=97 && c<=122)
+	 lower++;
+
+	 else if(c=='\n')
+	 line++;
+
+	}
+	fclose(fp);
+
+	printf("\n\tNo. of line = %d",line+1);
+	printf("\n\tNo. of Space = %d",space);
+	printf("\n\tNo. of Words = %d",line+space+1);
+	printf("\n\tNo. of Upper Letters = %d",upper);
+	printf("\n\tNo. of Lower Letter = %d",lower);
+
+  getch();
+}

@@ -1,0 +1,65 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+class string
+{
+	char *name;
+	int len;
+	public:
+	string()
+	{
+		len=0;
+		name=new char[len+1];
+	}
+	string(const char *s)
+	{
+		len=strlen(s);
+		name= new char [len+1];
+		strcpy(name,s);
+	}
+/*	~string()
+	{
+		delete name;
+	}*/
+	void display()
+	{
+		cout<<"\n\t\t"<<name <<"\n";
+	}
+	friend string operator +(string &a,string &b);
+	friend int operator <=(string &, string &);
+};
+string operator +(string &a,string &b)
+{
+	string s;
+	s.len=a.len+b.len;
+	delete s.name;
+	s.name = new char[s.len+1];
+	strcpy(s.name,a.name);
+	strcat(s.name,b.name);
+	return s;
+}
+int operator <=(string &a, string &b)
+{
+	if (a.len<=b.len)
+	  return 1;
+	else
+	  return 0;
+}
+
+void main()
+{
+	string name1("New "),name2("Delhi"),name3("york123	"),s1,s2;
+	clrscr();
+	s1= name1+name2;
+	s2= name1+name3;
+	cout<<"\n String 1:";
+	s1.display();
+	cout<<"\n String 2:";
+	s2.display();
+	if(s1<=s2)
+	   cout<<"\n\t\t string2 is larger then string1";
+	else
+	   cout<<"\n\t\t string1 is larger then string2";
+	getch();
+}
+

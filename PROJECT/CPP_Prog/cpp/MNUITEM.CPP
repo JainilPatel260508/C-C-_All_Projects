@@ -1,0 +1,107 @@
+#include<iostream.h>
+#include<conio.h>
+const int size=10;
+class item
+{
+	int code[size],cnt;
+	float price[size];
+	public :
+	   void Cnt()
+	   {
+	     cnt=0;
+	   }
+	   void getdata()
+	   {
+		cout<<"\n\n\t\tEnter the Item Code:";
+		cin>>code[cnt];
+		cout<<"\n\n\t\tEnter the Item Price:";
+		cin>>price[cnt];
+		cnt++;
+	   }
+	   void disp(void);  //by default inline
+	   void remove(void);
+	   void dispsum(void);
+};
+void item :: disp()
+{
+	float sum=0;
+	cout<<"\n\n\tCode \t\t Price";
+	cout<<"\n\t--------------------------";
+	for(int i=0;i<cnt;i++)
+	{
+	  // if(price[i]!=0)
+	   cout<<"\n\t"<<code[i]<<"\t\t"<<price[i];
+	   sum=sum+price[i];
+	}
+	cout<<"\n\t--------------------------";
+	cout<<"\n\n\t\t Sum :"<<sum;
+}
+void item :: dispsum()
+{
+	float sum=0;
+	for(int i=0;i<cnt;i++)
+	{
+	   sum=sum+price[i];
+	}
+	cout<<"\n\t--------------------------";
+	cout<<"\n\n\t\t Sum :"<<sum;
+}
+
+void item :: remove()
+{
+	int itmcd;
+	cout<<"\n\n\t\tEnter Item Code:";
+	cin>>itmcd;
+	for(int i=0;i<cnt;i++)
+	{
+		if(code[i]==itmcd)
+		   {
+		     price[i]=0;
+		     break;
+		   }
+	}
+	if(i==cnt)
+	{
+		cout<<"\n\n\t\t Item does not exist.";
+	}
+	else
+	{
+		cout<<"\n\n\t\t"<<itmcd<<" Item is deleted.";
+	}
+}
+
+void main()
+{
+	item obj;
+	int ch;
+	obj.Cnt();
+	do
+	{
+	clrscr();
+		cout<<"\n\n\t\t\t Menu";
+		cout<<"\n\t\t 1. Add Item";
+		cout<<"\n\t\t 2. Sum of Amount";
+		cout<<"\n\t\t 3. Remove Item";
+		cout<<"\n\t\t 4. Display";
+		cout<<"\n\t\t 5. Exit";
+		cout<<"\n\n\t\t Enter the option:";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:   obj.getdata();
+				  break;
+			case 2:   obj.dispsum();
+				  break;
+			case 3:   obj.remove();
+				  break;
+			case 4:   obj.disp();
+				  break;
+			case 5:
+				  break;
+			default:
+				 cout<<"\n\n\t\t Wrong choice! Try again....";
+				 break;
+		}
+	  getch();
+	}while(ch!=5);
+}

@@ -1,0 +1,65 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+
+class string
+{
+    char *a;
+    int len;
+
+    public:
+
+      string()
+      {
+	len=0;
+
+	a=new char[1];
+
+      }
+
+      string(char *str)
+      {
+	 len=strlen(str);
+
+	 a=new char[len+1];
+
+	 strcpy(a,str);
+      }
+
+      void disp()
+      {
+      cout<<"\n\tYour string: "<<a;
+      }
+
+      void concate(string &, string &);
+
+};
+
+void string :: concate(string &x, string &y)
+{
+      len=x.len + y.len;
+
+      delete a;
+
+      a=new char[len+1];
+
+      strcpy(a,x.a);
+      strcat(a,y.a);
+
+}
+
+void main()
+{
+    clrscr();
+
+    string s1,s2("Shrey "),s3("Mevawala"),s4;
+
+    s4.concate(s2,s3);
+
+    s1.disp();
+    s2.disp();
+    s3.disp();
+    s4.disp();
+
+    getch();
+}

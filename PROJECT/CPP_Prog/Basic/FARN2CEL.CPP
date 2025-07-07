@@ -1,0 +1,46 @@
+/*
+	faranite to celcius
+	celcius to faranite
+*/
+
+#include<iostream.h>
+#include<conio.h>
+
+class cel_far
+{
+	public:
+	       float celtofarn(float cel)
+		{
+		    float farn=0;
+
+			    farn=(cel*1.8) + 32;
+
+		    return(farn);
+		}
+		float farntocel(float farn)
+		{
+		    float cel=0;
+
+			    cel=(5*farn-5*32)/9;
+
+		    return(cel);
+		}
+};
+
+void main()
+{
+    cel_far obj;
+      float cel=0,farn=0;
+	clrscr();
+
+
+	cout<<"\n\n\t\tEnter Temperature in Celsius :";
+	cin>>cel;
+	cout<<"\n\t\tTemperature in Fahrenheit :"<<obj.celtofarn(cel)<<" F";
+
+	cout<<"\n\n\t\tEnter Temperature in Fahrenheit :";
+	cin>>farn;
+	cout<<"\n\t\tTemperature in Celsius :"<<obj.farntocel(farn)<<" C";
+
+	getch();
+}

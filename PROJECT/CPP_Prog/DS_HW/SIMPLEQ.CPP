@@ -1,0 +1,161 @@
+// Simple Queue
+
+#include<iostream.h>
+#include<conio.h>
+
+class Queue
+{
+   int *q,rear,front,size,data;
+
+   public:
+
+   Queue()
+   {
+    cout<<"\n\tEnter size of Queue: ";
+    cin>>size;
+
+    q=new int[size];
+    rear=-1;
+    front=-1;
+   }
+
+   ~Queue();
+
+   void menu();
+   void insert();
+   void del();
+   void display();
+};
+
+Queue :: ~Queue()
+{
+   delete q;
+}
+
+
+void Queue :: menu()
+{
+    int n;
+
+    clrscr();
+    cout<<"\n\n\t1. Insert";
+    cout<<"\n\t2. Delete";
+    cout<<"\n\t3. Display";
+    cout<<"\n\t4. Exit";
+
+    cout<<"\n\tEnter Your Choice: ";
+    cin>>n;
+
+    switch(n)
+    {
+       case 1:
+	       insert();
+	       menu();
+	       break;
+
+       case 2:
+	       del();
+	       menu();
+	       break;
+
+       case 3:
+	       display();
+	       menu();
+	       break;
+
+       case 4:
+	       break;
+
+       default:
+	       cout<<"\n\tEnter appropriate input";
+	       menu();
+    }
+}
+
+void Queue :: insert()
+{
+   if(rear>=size-1)
+   {
+     cout<<"\n\tQueue Overflow!!";
+     getch();
+     return ;
+   }
+
+   else
+   {
+     cout<<"\n\tEnter Data: ";
+     cin>>data;
+     rear++;
+
+     q[rear]=data;
+
+     if(front==-1)
+	front=0;
+
+     cout<<"\n\tData inserted successfully!";
+   }
+
+   getch();
+}
+
+void Queue :: del()
+{
+   if(front==-1)
+   {
+      cout<<"Queue Underflow!!";
+      getch();
+      return ;
+   }
+
+   else
+   {
+      q[front]=0;
+
+      if(front==rear)
+      {
+	 front=-1;
+	 rear=-1;
+      }
+      else
+	 front++;
+
+      cout<<"\n\tData deleted successfully!!";
+
+   }
+   getch();
+}
+
+
+void Queue :: display()
+{
+   if(front==-1)
+   {
+      cout<<"\n\tQueue Underflow!!";
+      getch();
+      return ;
+   }
+
+   else
+   {
+     cout<<"\n\n\tfront->";
+
+     for(int i=front;i<=rear;i++)
+     {
+	cout<<" "<<q[i];
+     }
+
+     cout<<" <-rear";
+   }
+   getch();
+}
+
+void main()
+{
+   clrscr();
+
+   Queue q1;
+
+   q1.menu();
+
+   getch();
+}

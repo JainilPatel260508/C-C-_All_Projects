@@ -1,0 +1,127 @@
+//Shape
+#include<iostream.h>
+#include<conio.h>
+
+class shape
+{
+   protected:
+   float area;
+
+   public:
+   virtual void cal_area()=0;
+};
+
+class triangle : public shape
+{
+   float b,h;
+
+   public:
+
+   void get_bh()
+   {
+     cout<<"\n\t Enter base of triangle: ";
+     cin>>b;
+     cout<<"\n\t Enter height of triangle: ";
+     cin>>h;
+   }
+   void cal_area()
+   {
+      area=(0.5)*b*h;
+      cout<<"\n\t Area of triangle: "<<area;
+      getch();
+   }
+};
+
+class rect : public shape
+{
+   float b,l;
+
+   public:
+
+   void get_lb()
+   {
+     cout<<"\n\t Enter breadth of rectangle: ";
+     cin>>b;
+     cout<<"\n\t Enter length of rectangle: ";
+     cin>>l;
+   }
+   void cal_area()
+   {
+      area=b*l;
+      cout<<"\n\t Area of rectangle: "<<area;
+      getch();
+   }
+};
+
+class circle : public shape
+{
+   float r;
+
+   public:
+
+   void get_r()
+   {
+     cout<<"\n\t Enter radius of circle: ";
+     cin>>r;
+   }
+   void cal_area()
+   {
+      area=3.14*r*r;
+      cout<<"\n\t Area of circle: "<<area;
+      getch();
+   }
+};
+
+void main()
+{
+
+   int n;
+   shape *ptr;
+   triangle  obj_1;
+   rect  obj_2;
+   circle  obj_3;
+
+   do{
+       clrscr();
+       cout<<"\n\t\t\t# Calculate Area Of: #\n";
+       cout<<"\n\t 1.Triangle";
+       cout<<"\n\t 2.Rectangle";
+       cout<<"\n\t 3.Circle";
+       cout<<"\n\t 4.Exit";
+       cout<<"\n\n\t Enter your choice: ";
+       cin>>n;
+
+       switch(n)
+       {
+	  case 1:
+		   ptr= &obj_1;
+		   obj_1.get_bh();
+		   ptr->cal_area();
+		   break;
+
+	  case 2:
+		   ptr= &obj_2;
+		   obj_2.get_lb();
+		   ptr->cal_area();
+		   break;
+
+	  case 3:
+		   ptr= &obj_3;
+		   obj_3.get_r();
+		   ptr->cal_area();
+		   break;
+
+	  case 4:
+		   break;
+
+	  default :
+		   cout<<"\n\t Enter an appropriate choice";
+		   getch();
+
+       }
+     }while(n!=4);
+
+   getch();
+
+
+}

@@ -1,0 +1,54 @@
+/*
+	Basic Data Type 		Our own Data Type(Structure/OOPS)
+	Primary Data Type 		Extended Data Type (Tabledd)  (Database)
+	int, float, char etc		Structure or Class -> var => object
+*/
+#include<stdio.h>
+#include<conio.h>
+
+struct stud
+{
+     int rno;
+     char name[20];
+     int m1,m2,m3,tot;
+     float per;
+}s1,s2;
+void main()
+{
+ //   int i=1,j,k;
+    struct stud s3={1,"Meet",56,85,75,250,74.25};
+    //struct stud m[25];
+    //,s4;
+    clrscr();
+    printf("\n\n\t\t Size :%d",sizeof(s1));
+    printf("\n\t Roll No:%d",s3.rno);
+    printf("\n\t Name: %s",s3.name);
+    printf("\n\t M1:%d",s3.m1);
+    printf("\n\t M2:%d",s3.m2);
+    printf("\n\t M3:%d",s3.m3);
+    printf("\n\t Total:%d",s3.tot);
+    printf("\n\t Per:%.2f",s3.per);
+
+    printf("\n\tRollno:");
+    scanf("%d",&s1.rno);
+    printf("\n\tName:");
+    scanf("%s",s1.name);
+    printf("\n\tM1:");
+    scanf("%d",&s1.m1);
+    printf("\n\tM2:");
+    scanf("%d",&s1.m2);
+    printf("\n\tM3:");
+    scanf("%d",&s1.m3);
+    s1.tot=s1.m1+s1.m2+s1.m3;
+    s1.per=s1.tot/3;
+
+    printf("\n\t Roll No:%d",s1.rno);
+    printf("\n\t Name: %s",s1.name);
+    printf("\n\t M1:%d",s1.m1);
+    printf("\n\t M2:%d",s1.m2);
+    printf("\n\t M3:%d",s1.m3);
+    printf("\n\t Total:%d",s1.tot);
+    printf("\n\t Per:%.2f",s1.per);
+
+    getch();
+}

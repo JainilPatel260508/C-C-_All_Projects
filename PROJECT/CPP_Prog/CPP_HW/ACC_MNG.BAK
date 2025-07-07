@@ -1,0 +1,144 @@
+// account management of 10 obj
+
+#include<iostream.h>
+#include<conio.h>
+static int count;
+
+class account
+{
+    char name[10];
+    int acc_type,acc_no;
+    float balance;
+    public:
+    void new_acc(void);
+//    int ask_accno(void);
+    void display(void);
+};
+
+void account :: new_acc()
+{
+clrscr();
+ l1: cout<<"\n\n\t\tWhich type of account you want to creat";
+     cout<<"\n\t\t1)Saving Account\n\t\t2)Current account";
+     cout<<"\n\t\tEnter your choice: ";
+     cin>>acc_type;
+     if(acc_type!=1 && acc_type!=2)
+     {
+	cout<<"\n\n\t\tEnter valid choice!!\n\t\tEnter any key to input.";
+	getch();
+	goto l1;
+     }
+
+     cout<<"\n\n\t\tEnter Your Name: ";
+     cin>>name;
+
+     acc_no=count+1;
+
+     if(acc_type==1)
+     balance=5000;
+     else
+     balance=1000;
+
+     cout<<"\n\n\t\tYour Default deposite is of Rs "<<balance;
+     cout<<"\n\t\tAccount created Sucessfully!!";
+}
+
+void account :: display()
+{
+    cout<<"\n\n\t\tName:         "<<name;
+    cout<<"\n\t\tAccount no:   "<<acc_no;
+    if(acc_type==1)
+    cout<<"\n\t\tAccount type: Saving";
+    else
+    cout<<"\n\t\tAccount type: Current";
+    cout<<"\n\t\tBalance:      "<<balance;
+}
+
+void main()
+{
+clrscr();
+  int sw=0,i=0;
+  account obj[10];
+
+  cout<<"\n\n1)Creat New Account";
+  cout<<"\n2)Deposit";
+  cout<<"\n3)Withdraw";
+  cout<<"\n4)Search Account";
+  cout<<"\n5)Display All Account Detail";
+  cout<<"\n6)Delete Account";
+  cout<<"\n7)Exit";
+  cout<<"\n\n\tEnter Your choice: ";
+  cin>>sw;
+
+  switch(sw)
+  {
+     case 1:
+	    if(count>=10)
+	    { cout<<"\n\n\t\tData Overflow!!!";
+	      getch();
+	      break;
+	    }
+	    obj[count].new_acc();
+	    obj[count].display();
+	    count++;
+	    cout<<"\n\n\t\tEnter any key to exit";
+	    getch();
+	    break;
+     case 2:
+       /*	   if(is_underflow())
+	   {
+	     cout<<"\n\n\t\tData is underflow!!";
+	     cout<<"\n\t\tEnter Any key to exit";
+	     getch();
+	   }
+	   i=ask_accno();  */
+
+
+
+     case 3:
+     case 4:
+     case 5:
+	    for(i=0;i<count;i++)
+	      obj[i].display();
+	    cout<<"\n\n\t\tEnter any key to exit";
+	    getch();
+	    break;
+     case 6:
+     case 7:
+	    break;
+     default:
+	 cout<<"\n\n\t\tEnter Valid choice!!";
+	 break;
+  }
+
+  if(sw!=7)
+     main();
+
+//getch();
+}
+
+int ask_accno()
+{
+   int x;
+
+l2:
+    cout<<"\n\n\t\tEnter Account No: ";
+    cin>>x;
+
+    if(x>count || x<0)
+    {
+       cout<<"\n\n\t\tThis Account No. Doesn't exist!!";
+       cout<<"\n\t\tEnter Valid Account no.";
+       getch();
+       goto l2;
+    }
+   return(x);
+}
+
+int is_underflow()
+{
+	if(count<0)
+	return 0;
+	else
+	return 1;
+}

@@ -1,0 +1,147 @@
+//circular queue
+#include<iostream.h>
+#include<conio.h>
+
+class circular_queue
+{
+     int front,rear,*c,n;
+  public:
+     circular_queue();
+    ~circular_queue();
+     void c_insert();
+     void c_delete();
+     void c_display();
+     void menu();
+};
+circular_queue :: circular_queue()
+{
+    front=-1;
+    rear=-1;
+    cout<<"\n\tEnter no. of element in circular queue: ";
+    cin>>n;
+    c=new int[n];
+}
+circular_queue :: ~circular_queue()
+{
+    delete c;
+}
+void circular_queue :: c_insert()
+{
+  if(rear==n-1)
+    rear=0;
+  else
+    rear++;
+
+  if(front==rear)
+  {
+      cout<<"\n\n\t\t\tData overflow...";
+      cout<<"\n\t\t\tStrike any key to exit.";
+      getch();
+    if(rear==0)
+    {
+       rear=n-1;
+    }
+    else
+      rear--;
+    return;
+  }
+  int data;
+  cout<<"\n\n\tEnter data to insert: ";
+  cin>>data;
+
+  c[rear]=data;
+
+  if(front==-1)
+    front=0;
+}
+void circular_queue :: c_delete()
+{
+  if(front==-1)
+  {
+    cout<<"\n\n\t\t\tData underflow...";
+    cout<<"\n\t\t\tStrike any key to exit.";
+    getch();
+    return;
+  }
+  int data=0;
+  data=c[front];
+  c[front]=0;
+
+  if(front==rear)
+     front=rear=-1;
+
+  else if(front==n-1)
+  {
+     if(c[0]==0)
+       front=-1;
+     else
+       front=0;
+  }
+  else
+     front++;
+
+  cout<<"\n\n\t\t\t'"<<data<<"' is deleted from queue";
+  cout<<"\n\t\t\tStrike any key to exit.";
+  getch();
+}
+void circular_queue :: c_display()
+{
+  if(front==-1)
+  {
+    cout<<"\n\n\t\t\tData underflow...";
+    cout<<"\n\t\t\tStrike any key to exit.";
+    getch();
+    return;
+  }
+  cout<<"\n\n\t\t\t";
+  for(int i=0;i<n;i++)
+    cout<<" "<<c[i]<<" ";
+
+  cout<<"\n\n\t\tStrike any key to exit.";
+  getch();
+}
+
+void circular_queue :: menu()
+{
+    int c;
+ do
+ {
+  clrscr();
+  c=0;
+    cout<<"\n\n\t\t\t1)Insert";
+    cout<<"\n\t\t\t2)Delete";
+    cout<<"\n\t\t\t3)Display";
+    cout<<"\n\t\t\t4)Exit";
+    cout<<"\n\t\t\tEnter your choice: ";
+    cin>>c;
+
+    switch(c)
+    {
+	case 1:
+		c_insert();
+		break;
+	case 2:
+		c_delete();
+		break;
+	case 3:
+		c_display();
+		break;
+	case 4:
+		break;
+	default:
+	 cout<<"\n\n\t\t\tEnter valid choice...";
+	 cout<<"\n\t\t\tStrike any key to re-input.";
+	 getch();
+	 break;
+    }
+ }while(c!=4);
+}
+
+void main()
+{
+  clrscr();
+	circular_queue obj;
+  clrscr();
+	obj.menu();
+  getch();
+}

@@ -1,0 +1,19 @@
+/*
+		how to use udf
+		pow
+		code reduce
+*/
+#include<stdio.h>
+#include<conio.h>
+
+main()
+{
+    disp_name();
+    disp_name();
+    getch();
+//    return 0;
+}
+void disp_name()
+{
+	printf("\n\t This is the function");
+}

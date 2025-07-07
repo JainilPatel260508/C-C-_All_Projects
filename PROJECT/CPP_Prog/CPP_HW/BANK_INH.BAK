@@ -1,0 +1,179 @@
+/* Bank Account*/
+
+#include<iostream.h>
+#include<conio.h>
+
+int count_cr,count_sa;
+
+class account
+{
+   protected:
+
+   char name[10];
+   int acc_no, acc;
+   float bal;
+
+   public:
+   void disp();
+   int get_acc_no()
+   {
+      return(acc_no);
+   }
+
+};
+
+void account :: disp()
+{
+
+       cout<<"\n\tName: "<<name;
+       cout<<"\n\tAccount no.: "<<acc_no;
+       cout<<"\n\tBalance: "<<bal;
+       if(acc==1)
+       cout<<"\n\tAccount Type: Saving account";
+       else
+       cout<<"\n\tAccount Type: Current account";
+       getch();
+}
+
+class curr_acc : public account
+{
+   float amt;
+
+   public:
+
+   void menu();
+   void deposit()
+   {
+      cout<<"\n\t Enter amt you want to deposit: ";
+      cin>>amt;
+
+      bal+=amt;
+
+      cout<<"\n\tYour balance now is "<<bal;
+      getch();
+   }
+   void withdraw()
+   {
+       cout<<"\n\tEnter amt you want to withdraw: ";
+       cin>>amt;
+
+       if(bal-amt<0)
+       {
+	  cout<<"\n\tInsufficient balance...";
+	  getch();
+	  return;
+       }
+
+       int c=0;
+       if(bal-amt<5000)
+       {
+	  cout<<"\n\tYour balance is getting below the minimum balance";
+	  cout<<"\n\tYou will get penalty of 500...";
+	  cout<<"\n\t Do you still want to withdraw: \n\t 1.Yes\t2.No\n\t";
+	  cin>>c;
+       }
+       if(c==0 || c==1)
+       {
+	  bal=bal-amt;
+	  cout<<"\n\tYour balance now is "<<bal;
+       }
+       getch();
+   }
+   void curr_inp();
+};
+
+int srch(curr_acc*,int);
+
+void curr_acc :: curr_inp()
+{
+    cout<<"\n\t Enter your name: ";
+    cin>>name;
+    acc_no=count_cr+count_sa+1;
+    bal=10000;
+    cout<<"\n\tYour balance is "<<bal;
+    menu();
+}
+
+void curr_acc :: menu()
+{
+    int n,x;
+
+    cout<<"\n\n\t1. Deposit";
+    cout<<"\n\t2. Withdraw";
+    cout<<"\n\t3. Display details";
+    cout<<"\n\tEnter Your Choice: ";
+    cin>>n;
+
+    switch(n)
+    {
+       case 1:
+	       deposit();
+	       break;
+
+       case 2:
+	       withdraw();
+	       break;
+
+      case 3:
+	       disp();
+	       break;
+
+    }
+}
+
+void main()
+{
+    int sw,x,y;
+    curr_acc obj[5];
+    count_cr=0;
+    count_sa=0;
+    curr_acc *ptr;
+
+  do{
+
+   clrscr();
+   cout<<"\n\t 1. Create Saving account";
+   cout<<"\n\t 2. Create Current account";
+   cout<<"\n\t 3. Open existing Saving account";
+   cout<<"\n\t 4. Open existing Current account";
+   cout<<"\n\t 5. Display";
+   cout<<"\n\t 6. Exit";
+   cout<<"\n\t Enter your choice: ";
+   cin>>sw;
+
+   switch(sw)
+   {
+     // case 1:
+
+      case 2:
+	    {
+	       obj[count_cr].curr_inp();
+	       count_cr++;
+	       break;
+	    }
+      // case 3:
+
+
+      //case 4:
+
+       case 5:
+		cout<<"\n\t Enter your account no: ";
+		cin>>x;
+		y=srch(&obj[0],x);
+		obj[y].disp();
+       case 6:
+		break;
+
+       default:
+		cout<<"\n\t Enter appropriate choice...";
+   }
+  }while(sw!=6);
+  getch();
+}
+
+int srch(curr_acc *y,int x)
+{
+   for(int i=0 ; y->get_acc_no()!=x && i<=count_cr;i++,y++);
+
+   return i;
+}
